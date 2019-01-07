@@ -26,14 +26,14 @@ echo " "
 echo "There are $var2 files in /usr/share larger than 1Mbyte."
 echo " "
 while true; do
-read -p "do you want to compromize them to /home/arkiv?" yn
+read -p "do you want to copy and compromize them to /home/backup?" yn
     case $yn in
         [Yy]* ) for i in $var ; do
                         file=${i##*/}
                         sudo cp $i /home/arkiv/$file ;
                 done
-                sudo tar -zcvf /home/backup/sharebackup.tar.gz /home/arkiv$
-
+                sudo tar -zcvf /home/backup/sharebackup.tar.gz /home/arkiv
+; break;;
         [Nn]* ) exit;;
         * ) echo "Yes or No";;
 esac
