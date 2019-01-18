@@ -1,0 +1,2 @@
+#!/bin/bash
+cat skript-2019-01-07-3c.sh | rev
