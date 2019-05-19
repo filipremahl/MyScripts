@@ -1,0 +1,74 @@
+#!/bin/bash
+
+xaxis=0
+yaxis=0
+lastxaxis=0
+lastyaxis=0
+key=""
+
+###Varialbes ends here
+
+###Intro
+clear
+echo "use \"wasd\" to move"
+sleep 1
+clear
+cat /home/filip/scripts/coinflip/pics/x0y0.img
+
+###infinite loop###
+while :
+do
+
+###Pics
+clear
+cat /home/filip/scripts/coinflip/pics/x"$xaxis"y"$yaxis".img
+
+
+read -t 1 -n 1 nchars
+if [ $? = 142 ] ; then
+
+
+key=$(cat /home/filip/scripts/coinflip/lastkey.txt)
+
+
+else
+echo $nchars > lastkey.txt
+key=$nchars
+fi
+
+
+
+
+###Main controls wasd
+if [ $key = "w"  ]; then
+        ((yaxis=yaxis+1))
+fi
+
+if [ $key = "a"  ]; then
+        ((xaxis=xaxis-1))
+fi
+
+if [ $key = "s"  ]; then
+        ((yaxis=yaxis-1))
+fi
+
+if [ $key = "d"  ]; then
+        ((xaxis=xaxis+1))
+fi
+
+
+###Snake growing
+echo $xaxis > lastxaxis.txt
+echo $yaxis > lastyaxis.txt
+lastxaxis=$(cat /home/filip/scripts/coinflip/lastxaxis.txt)
+lastyaxis=$(cat /home/filip/scripts/coinflip/lastyaxis.txt)
+
+
+
+
+
+
+
+
+
+done
